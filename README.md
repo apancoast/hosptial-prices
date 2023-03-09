@@ -16,19 +16,21 @@ This project utilizes SQL, Python, and Power BI to analyze and visualize the hos
     - pdfs: Contains PDFs of Power BI reports for easier viewing.
 
 # Data Sources
-The data for this project was obtained from the following sources:
-
+Due to file size and license restrictions, the source data files are not included in this repository, but can be accessed at the above data source links. The data for this project was obtained from the following sources:
 - [OHDSI Athena](https://athena.ohdsi.org/search-terms/start) - a public database of healthcare data
-- [Novant Health Standard Charges](https://www.novanthealth.org/home/patients--visitors/your-healthcare-costs/cost-estimates/medical-center-standard-charges.aspx) - a public list of standard charges for medical procedures at Novant Health hospitals
-- [Atrium Health Pricing](https://atriumhealth.org/for-patients-visitors/financial-assistance/pricing) - a public list of standard charges for medical procedures at Atrium Health hospitals
-
-Due to file size and license restrictions, the source data files are not included in this repository, but can be accessed at the above data source links. The files used are:
-    - HCPCS and CPT4 Vocabularies, version 5
+Files used:
+    -HCPCS and CPT4 Vocabularies, version 5
+-[Novant Health Standard Charges](https://www.novanthealth.org/home/patients--visitors/your-healthcare-costs/cost-estimates/medical-center-standard-charges.aspx) - a public list of standard charges for medical procedures at Novant Health hospitals
+Files used:
     - Presbyterian Medical Center standard charges
-    - Carolinas Medical Center and Levine Children’s Hospital Standard Charges
+- [Atrium Health Pricing](https://atriumhealth.org/for-patients-visitors/financial-assistance/pricing) - a public list of standard charges for medical procedures at Atrium Health hospitals
+Files used:
+    -Carolinas Medical Center and Levine Children’s Hospital Standard Charges
 
 # Results
 The results of this project can be found in the Power BI report files located in the reports folder. The report provides insights into the pricing strategies of Novant Health and Atrium Health, and compares the cost of common medical procedures between the two hospitals. Additionally, SQL scripts are included in the data folder that can be used to reproduce the database and perform further analysis.
+
+Please note that this project is on-going, so results are currently limited. It is my goal to provide actionable business insights as the project develops, which will be documented in the following Change Log.
 
 # Change Log
 ## March 8, 2023
@@ -42,4 +44,4 @@ The results of this project can be found in the Power BI report files located in
 - Continuously update and refine the Power BI reports to provide more insights into the hospital charge data.
 
 # Contact
-For any questions or feedback about this project, please feel free to contact me.
+For any questions or feedback about this project, please to contact me via [LinkedIn](https://www.linkedin.com/in/pancoastashley/).
