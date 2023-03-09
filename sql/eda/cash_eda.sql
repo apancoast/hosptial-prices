@@ -33,14 +33,15 @@ FROM cash_prices AS p
 HAVING percent_difference IS NOT NULL
 	AND percent_difference > 0;
 
-SELECT *
-FROM cash_diffs
+SELECT COUNT(DISTINCT code)
+FROM cash_diffs;
 WHERE code IN ('94375');
 
-SELECT *
+SELECT COUNT(DISTINCT code) -- counts confusing in Power BI
+
 FROM select_prices
-WHERE code IN ('94375')
-AND plan IN ('cash_price', 'gross', 'phcs', 'uhc_unspecified');
+-- WHERE code IN ('88162')
+WHERE plan IN ('cash_price');
 
 -- Calculate Q1, Q3, IQR, lower limit, and upper limit of the percent_difference column
 SELECT 
