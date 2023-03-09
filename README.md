@@ -19,8 +19,8 @@ This project utilizes SQL, Python, and Power BI to analyze and visualize the hos
 Due to file size and license restrictions, the source data files are not included in this repository, but can be accessed at the above data source links. The data for this project was obtained from the following sources:
 - [OHDSI Athena](https://athena.ohdsi.org/search-terms/start) - a public database of healthcare data
 Files used:
-    -HCPCS and CPT4 Vocabularies, version 5
--[Novant Health Standard Charges](https://www.novanthealth.org/home/patients--visitors/your-healthcare-costs/cost-estimates/medical-center-standard-charges.aspx) - a public list of standard charges for medical procedures at Novant Health hospitals
+    - HCPCS and CPT4 Vocabularies, version 5
+- [Novant Health Standard Charges](https://www.novanthealth.org/home/patients--visitors/your-healthcare-costs/cost-estimates/medical-center-standard-charges.aspx) - a public list of standard charges for medical procedures at Novant Health hospitals
 Files used:
     - Presbyterian Medical Center standard charges
 - [Atrium Health Pricing](https://atriumhealth.org/for-patients-visitors/financial-assistance/pricing) - a public list of standard charges for medical procedures at Atrium Health hospitals
