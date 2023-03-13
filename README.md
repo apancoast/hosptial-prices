@@ -44,4 +44,4 @@ Please note that this project is on-going, so results are currently limited. It 
 - Continuously update and refine the Power BI reports to provide more insights into the hospital charge data.
 
 # Contact
-For any questions or feedback about this project, please to contact me via [LinkedIn](https://www.linkedin.com/in/pancoastashley/).
+For any questions or feedback about this project, please contact me via [LinkedIn](https://www.linkedin.com/in/pancoastashley/).

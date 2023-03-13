@@ -33,16 +33,6 @@ FROM cash_prices AS p
 HAVING percent_difference IS NOT NULL
 	AND percent_difference > 0;
 
-SELECT COUNT(DISTINCT code)
-FROM cash_diffs;
-WHERE code IN ('94375');
-
-SELECT COUNT(DISTINCT code) -- counts confusing in Power BI
-
-FROM select_prices
--- WHERE code IN ('88162')
-WHERE plan IN ('cash_price');
-
 -- Calculate Q1, Q3, IQR, lower limit, and upper limit of the percent_difference column
 SELECT 
     CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(GROUP_CONCAT(percent_difference ORDER BY percent_difference SEPARATOR ','), ',', 0.75 * COUNT(*) + 1), ',', -1) AS DECIMAL) AS 'Q3',
@@ -52,3 +42,47 @@ SELECT
     CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(GROUP_CONCAT(percent_difference ORDER BY percent_difference SEPARATOR ','), ',', 0.75 * COUNT(*) + 1), ',', -1) AS DECIMAL) + 1.5 * (CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(GROUP_CONCAT(percent_difference ORDER BY percent_difference SEPARATOR ','), ',', 0.75 * COUNT(*) + 1), ',', -1) AS DECIMAL) - CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(GROUP_CONCAT(percent_difference ORDER BY percent_difference SEPARATOR ','), ',', 0.25 * COUNT(*) + 1), ',', -1) AS DECIMAL)) AS 'Upper Limit'
 FROM cash_diffs;
 
+-- count does where cash price is =
+WITH comps AS
+(SELECT code,
+		CASE WHEN
+			(SELECT amount
+			FROM select_prices
+			WHERE hospital_id = 1
+			AND plan = 'cash_price'
+			AND code = t.code) = (SELECT amount
+			FROM select_prices
+			WHERE hospital_id = 2
+			AND plan = 'cash_price'
+			AND code = t.code) THEN 'Equal'
+        WHEN 
+			(SELECT amount
+			FROM select_prices
+			WHERE hospital_id = 1
+			AND plan = 'cash_price'
+			AND code = t.code) > (SELECT amount
+			FROM select_prices
+			WHERE hospital_id = 2
+			AND plan = 'cash_price'
+			AND code = t.code) THEN 'CMC higher'
+		WHEN
+			(SELECT amount
+			FROM select_prices
+			WHERE hospital_id = 1
+			AND plan = 'cash_price'
+			AND code = t.code) < (SELECT amount
+			FROM select_prices
+			WHERE hospital_id = 2
+			AND plan = 'cash_price'
+			AND code = t.code) THEN 'Presb higher'
+		ELSE 'No match' END AS comparison
+FROM select_prices AS t
+GROUP BY code)
+
+SELECT  comparison, COUNT(comparison)
+FROM comps
+GROUP BY comparison;
+
+SELECT *
+FROM select_prices
+WHERE code = '30801';
