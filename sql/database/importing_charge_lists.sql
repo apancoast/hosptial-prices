@@ -187,6 +187,7 @@ CREATE TABLE novant_presbyterian_std (
     uhc_mcr_adv decimal(10, 2),
     wellcare decimal(10, 2),
     amerihealth_caritas decimal(10, 2)
+DEFAULT NULL
 );
 
 LOAD DATA INFILE 'D:/Data Projects/hospital prices sources/NovantHealthPresbyterianMedicalCenter_standardcharges.csv' 
@@ -289,8 +290,6 @@ IGNORE 1 ROWS;
 
 UPDATE novant_clt_ortho
 SET gross_charge = NULLIF(gross_charge, 0.00),
-    min_negotiated_charge = NULLIF(min_negotiated_charge, 0.00),
-    max_negotiated_charge = NULLIF(max_negotiated_charge, 0.00),
     cash_price = NULLIF(cash_price, 0.00),
     aetna_coventry = NULLIF(aetna_coventry, 0.00),
     aetna_coventry_rental_network = NULLIF(aetna_coventry_rental_network, 0.00),
@@ -325,3 +324,5 @@ SET gross_charge = NULLIF(gross_charge, 0.00),
     uhc_mcr_adv = NULLIF(uhc_mcr_adv, 0.00),
     wellcare = NULLIF(wellcare, 0.00),
     amerihealth_caritas = NULLIF(amerihealth_caritas, 0.00);
+
+-- Unable to find peds list for Novant, so I assume it doesn't exist

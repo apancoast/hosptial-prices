@@ -1,12 +1,15 @@
 -- Combining Desired Data
--- Create temporary table to combine all payers from CMC
+-- Create temporary table to combine all payers from CMC that contain a match in Novant lists
 CREATE TEMPORARY TABLE cmc_all AS
 
-WITH selct_codes AS (
+WITH select_codes AS (
 	SELECT DISTINCT cpt
     FROM novant_presbyterian_std
+    UNION
+	SELECT DISTINCT cpt
+    FROM novant_clt_ortho
     )
-
+    
 SELECT `procedure`, code, rev_code, procedure_description, plans, ip_gross_charge, ip_negotiated_charge, vocabulary_id
 FROM cmc_adult_zero_std
 WHERE plans IN (
@@ -28,7 +31,7 @@ WHERE plans IN (
 'UHC PPO EPO CHOICE SELECT [10101302]'
 ) AND code IN
 	(SELECT cpt
-    FROM selct_codes)
+    FROM select_codes)
 UNION
 SELECT `procedure`, code, rev_code, procedure_description, plans, ip_gross_charge, ip_negotiated_charge, vocabulary_id
 FROM cmc_adult_one_std
@@ -51,13 +54,13 @@ WHERE plans IN (
 'UHC PPO EPO CHOICE SELECT [10101302]'
 ) AND code IN
 	(SELECT cpt
-    FROM selct_codes)
+    FROM select_codes)
 UNION
 SELECT `procedure`, code, rev_code, procedure_description, plans, ip_gross_charge, ip_discounted_charge, vocabulary_id
 FROM cmc_cash_prices
 WHERE code IN
 	(SELECT cpt
-    FROM selct_codes);
+    FROM select_codes);
 
 -- This query removes codes with multiple procedure codes unique to CMC, to ensure apples-to-apples comparisons of CPT codes.
 CREATE TEMPORARY TABLE codes_to_keep
